@@ -28,3 +28,7 @@ You can also weave the program as en book or a PDF file, although the appropriat
 
 - `inweb experiment -weave-as ebook`
 - `inweb experiment -weave-as pdftex`
+
+To run an associated test:
+
+- `intest experiment all`

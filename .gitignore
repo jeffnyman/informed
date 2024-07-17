@@ -3,6 +3,12 @@ Tangled
 Woven
 tags
 app.mk
+intest-history.txt
+_Tangled_Actual
+_Tangled_Console
+_Tangled_Ideal
+_Scan_Actual
+_Scan_Ideal
 
 # OS generated files
 

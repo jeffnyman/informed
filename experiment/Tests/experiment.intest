@@ -1,0 +1,34 @@
+-cases 'experiment/Tests/Test Cases'
+
+-recipe
+  set: $INWEB = inweb
+  set: $WEB = $PATH/$CASE.inweb
+
+  mkdir: $PATH/_Tangled_Actual
+	mkdir: $PATH/_Tangled_Ideal
+	mkdir: $PATH/_Tangled_Console
+
+  set: $TA = $PATH/_Tangled_Actual/$CASE.txt
+	set: $TI = $PATH/_Tangled_Ideal/$CASE.txt
+	set: $TC = $PATH/_Tangled_Console/$CASE.txt
+
+  step: $INWEB $WEB -no-ctags -tangle-to $TA >$TC 2>&1
+  or: 'failed inweb' $TC
+  show: $TA
+  match text: $TA $TI
+  or: 'produced the wrong tangled code'
+
+  mkdir: $PATH/_Scan_Actual
+	mkdir: $PATH/_Scan_Ideal
+
+  set: $SA = $PATH/_Scan_Actual/$CASE.txt
+	set: $SI = $PATH/_Scan_Ideal/$CASE.txt
+
+  step: $INWEB $WEB -scan >$SA 2>&1
+  or: 'failed inweb' $SA
+  show: $SA
+  match text: $SA $SI
+  or: 'produced the wrong scan'
+
+  pass: 'passed'
+-end
